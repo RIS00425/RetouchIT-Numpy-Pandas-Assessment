@@ -22,8 +22,8 @@ Technical Assessment that ensures candidates demonstrates practical expertise ra
    A) `[[2, 3, 4], [3, 4, 5], [4, 5, 6]]`  
    B) `[2, 4, 6]`  
    C) `[[2], [4], [6]]`  
-   D) Error (shape mismatch)  
-
+   D) Error (shape mismatch)
+**ANSWER** A
 2. **Indexing & Slicing**  
    Given `arr = np.arange(12).reshape(3, 4)`, which code extracts the subarray `[[5, 6], [9, 10]]`?  
    **Options:**  
@@ -31,17 +31,23 @@ Technical Assessment that ensures candidates demonstrates practical expertise ra
    B) `arr[1:, 1:3]`  
    C) `arr[1:3, 1:2]`  
    D) `arr[[1,2], [1,2]]`  
-
+**ANSWER**A
 3. **Vectorized Operations**  
    Replace all negative values in `arr = np.array([-2, -1, 0, 1, 2])` with `0` using a **single vectorized operation**.  
-   *(Write the code)*  
+   *(import numpy as np
+     arr = np.array([-2,-3,0,1,2])
+     arr[arr<0]=0
+     print(arr))*  
 
 4. **Aggregation & NaN Handling**  
    Compute the row-wise mean of `matrix` below, ignoring `NaN` values:  
    ```python
    matrix = np.array([[1, np.nan, 3], [4, 5, np.nan]])
    ```  
-   *(Write the code)*  
+   *(  import numpy as np
+       matrix = np.array([[1, np.nan, 3],[4, 5, np.nan]])
+       row_means = np.nanmean(matrix, axis=1)
+       print(row_means) )*
 
 5. **Advanced Indexing**  
    What does this code return?  
@@ -55,7 +61,7 @@ Technical Assessment that ensures candidates demonstrates practical expertise ra
    B) `[True, False, True, False]`  
    C) `[20, 40]`  
    D) Error  
-
+**ANSWER** A
 ---
 
 #### **Section 2: Pandas (5 Questions)**
@@ -65,14 +71,17 @@ Technical Assessment that ensures candidates demonstrates practical expertise ra
    ```python
    data = {'Name': ['Alice', 'Bob', 'Charlie'], 'Age': [25, 30, 35]}
    ```  
-   *(Write the code)*  
+   *( import pandas as pd
+      data = {'Name' : ['Alice','Bob', 'Charlie'])
+      df = pd.DataFrame(data,index=[100,101,102])
+      print(df) ) *  
 
 7. **Handling Missing Data**  
    In `df`, replace all `NaN` values in column `'B'` with the **mean of column `'B'`**.  
    ```python
    df = pd.DataFrame({'A': [1, 2, np.nan], 'B': [np.nan, 5, 6]})
    ```  
-   *(Write the code)*  
+   *()*  
 
 8. **GroupBy & Aggregation**  
    Group `df` by `'Region'`, then compute the **sum of `'Sales'`** and **mean of `'Profit'`** for each group. Reset the index.  
@@ -83,7 +92,15 @@ Technical Assessment that ensures candidates demonstrates practical expertise ra
        'Profit': [20, 30, 25, 40]
    })
    ```  
-   *(Write the code)*  
+   *( import pandas as pd
+     df = pd.DataFrame({
+    'Region': ['North', 'South', 'North', 'South'],
+    'Sales': [100, 200, 150, 250],
+    'Profit': [20, 30, 25, 40] })
+     result = df.groupby('Region').agg({
+    'Sales': 'sum',
+    'Profit': 'mean' }) reset_index()
+     print(result))*  
 
 9. **Merging DataFrames**  
    Merge `orders` and `customers` on `'cust_id'`, keeping **all orders** (even if no customer match exists).  
